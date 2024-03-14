@@ -4,24 +4,28 @@
 <!-- Replace block content in base_template.html -->
 {% block content %}
 <h1>Portfolio Title: {{ portfolio.title }}</h1>
-
+<p> </p>
 <p><strong>Email:</strong> {{ portfolio.contact_email }}</p>
 <p><strong>Active Status:</strong> {{ portfolio.is_active }}</p>
 <p><strong>About:</strong> {{ portfolio.about }}</p>
-<p><strong>Porfolio ID:</strong> {{ portfolio.id }}</p>
 
 <h2>Projects:</h2>
+{% if user.is_authenticated %}
+    <a href="#" class="btn btn-Success" role="button">New Project</a>
+{% endif %}
 
+<p> </p>
 {% if portfolio.project_set.all %}
-    <ul>
+    <ul class="project-group"> <!-- Creates a container for the projects-->
         {% for project in portfolio.project_set.all %}
-            <li>
-                <a href="{{ project.get_absolute_url }}"><strong>{{ project.title }}</strong>
-
+            <div class="project-group-item p-3 border"> <!-- Creates a container for each project, with a little extra spacing between projects-->
+                <h6>{{ project.title }}</h6>
+                <a href="{{ project.get_absolute_url }}" class="btn btn-primary" role="button">View</a>
                 {% if user.is_authenticated %}
-                    <a href="#" class="btn btn-info" role="button">Edit</a>
+                    <a href="#" class="btn btn-warning" role="button">Update</a>
+                    <a href="#" class="btn btn-danger" role="button">Delete</a>
                 {% endif %}
-            </li>
+            </div>
         {% endfor %}
     </ul>
     {% else %}
