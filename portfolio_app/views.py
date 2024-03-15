@@ -36,7 +36,6 @@ class StudentDetailView(DetailView):
 
 class PortfolioDetailView(DetailView):
     model = Portfolio
-    # project_list = Project.objects.all()
 
 class ProjectListView(ListView):
     model = Project

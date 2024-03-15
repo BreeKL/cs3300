@@ -1,9 +1,13 @@
-<!-- inherit from base.html-->
+<!-- inherit from base_template.html-->
 {% extends "portfolio_app/base_template.html" %}
 
 <!-- Replace block content in base_template.html -->
 {% block content %}
 <h1>Portfolio Title: {{ portfolio.title }}</h1>
+<p> </p>
+{% if user.is_authenticated %}
+    <a href="#" class="btn btn-warning" role="button">Update Portfolio</a>
+{% endif %}
 <p> </p>
 <p><strong>Email:</strong> {{ portfolio.contact_email }}</p>
 <p><strong>Active Status:</strong> {{ portfolio.is_active }}</p>
