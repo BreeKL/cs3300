@@ -3,12 +3,7 @@
 {% block content %}
 <form action="" method="post">
   {% csrf_token %}
-  {% if project.title %}
-    <h1>Edit {{ project.title }}</h1>
-  {% else %}
-    <h1>Create new project</h1>
-  {% endif %}
-  <p> </p>
+  <h1>Update {{portfolio.title}}</h1>
   <table>
     {{ form.as_table }}
   </table>

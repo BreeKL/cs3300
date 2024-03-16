@@ -17,9 +17,10 @@ path('portfolio/<int:pk>', views.PortfolioDetailView.as_view(), name='portfolio-
 path('project/<int:pk>', views.ProjectDetailView.as_view(), name='project-detail'),
 ]
 
-
+# url patterns for Create-Update-Delete forms
 urlpatterns += [
     path('project/create/', views.CreateProject.as_view(), name='create-project'),
     path('project/<int:pk>/update/', views.UpdateProject.as_view(), name='update-project'),
     path('project/<int:pk>/delete/', views.DeleteProject.as_view(), name='delete-project'),
+    path('portfolio/<int:pk>/update', views.UpdatePortfolio.as_view(), name = 'update-portfolio'),
 ]

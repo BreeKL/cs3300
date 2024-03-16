@@ -49,7 +49,7 @@ class ProjectDetailView(DetailView):
     model = Project
     
 # --------------------------------------------------------
-# for forms
+# for generic forms
 # --------------------------------------------------------
 class CreateProject(CreateView):
     model = Project
@@ -63,3 +63,6 @@ class DeleteProject(DeleteView):
     model = Project
     success_url = reverse_lazy('index')
 
+class UpdatePortfolio(UpdateView):
+    model = Portfolio
+    fields = '__all__'
