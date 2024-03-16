@@ -16,3 +16,10 @@ path('student/<int:pk>', views.StudentDetailView.as_view(), name='student-detail
 path('portfolio/<int:pk>', views.PortfolioDetailView.as_view(), name='portfolio-detail'),
 path('project/<int:pk>', views.ProjectDetailView.as_view(), name='project-detail'),
 ]
+
+
+urlpatterns += [
+    path('project/create/', views.CreateProject.as_view(), name='create-project'),
+    path('project/<int:pk>/update/', views.UpdateProject.as_view(), name='update-project'),
+    path('project/<int:pk>/delete/', views.DeleteProject.as_view(), name='delete-project'),
+]

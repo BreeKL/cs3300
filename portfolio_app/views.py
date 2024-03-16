@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 from django.views.generic import ListView, DetailView
+
+# for forms
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+# and HttpResponseRedirect from above
 
 # Create your views here.
 def index(request):
@@ -43,3 +48,18 @@ class ProjectListView(ListView):
 class ProjectDetailView(DetailView):
     model = Project
     
+# --------------------------------------------------------
+# for forms
+# --------------------------------------------------------
+class CreateProject(CreateView):
+    model = Project
+    fields = '__all__'
+
+class UpdateProject(UpdateView):
+    model = Project
+    fields = ['title', 'description']
+
+class DeleteProject(DeleteView):
+    model = Project
+    success_url = reverse_lazy('index')
+

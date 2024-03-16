@@ -1,0 +1,17 @@
+{% extends "portfolio_app/base_template.html" %}
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+  {% if project.title %}
+    <h1>Edit {{ project.title }}<h1>
+  {% else %}
+    <h1>Create new project<h1>
+  {% endif %}
+  <p> </p>
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="Submit" />
+</form>
+{% endblock %}

@@ -15,7 +15,7 @@
 
 <h2>Projects:</h2>
 {% if user.is_authenticated %}
-    <a href="#" class="btn btn-Success" role="button">New Project</a>
+    <a href="{% url 'create-project' %}" class="btn btn-Success" role="button">New Project</a>
 {% endif %}
 
 <p> </p>
@@ -26,8 +26,8 @@
                 <h6>{{ project.title }}</h6>
                 <a href="{{ project.get_absolute_url }}" class="btn btn-primary" role="button">View</a>
                 {% if user.is_authenticated %}
-                    <a href="#" class="btn btn-warning" role="button">Update</a>
-                    <a href="#" class="btn btn-danger" role="button">Delete</a>
+                    <a href="{% url 'update-project' project.id %}" class="btn btn-warning" role="button">Update</a>
+                    <a href="{% url 'delete-project' project.id %}" class="btn btn-danger" role="button">Delete</a>
                 {% endif %}
             </div>
         {% endfor %}
