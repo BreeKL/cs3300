@@ -1,0 +1,41 @@
+<!-- inherit from base_template.html-->
+{% extends "portfolio_app/base_template.html" %}
+
+<!-- Replace block content in base_template.html -->
+{% block content %}
+<h1>Portfolio Title: {{ portfolio.title }}</h1>
+<p> </p>
+{% if user.is_authenticated %}
+    <a href="{% url 'update-portfolio' portfolio.id %}" class="btn btn-warning" role="button">Update Portfolio</a>
+{% endif %}
+<p> </p>
+<div class="portfolio information">
+    <p><strong>Email:</strong> {{ portfolio.contact_email }}</p>
+    <p><strong>Active Status:</strong> {{ portfolio.is_active }}</p>
+    <p><strong>About:</strong> {{ portfolio.about }}</p>
+</div>
+
+<h2>Projects:</h2>
+{% if user.is_authenticated %}
+    <a href="{% url 'create-project' %}" class="btn btn-Success" role="button">New Project</a>
+{% endif %}
+
+<p> </p>
+{% if portfolio.project_set.all %}
+    <ul class="project-group"> <!-- Creates a container for the projects-->
+        {% for project in portfolio.project_set.all %}
+            <div class="project-group-item p-3 border"> <!-- Creates a container for each project, with a little extra spacing between projects-->
+                <h6>{{ project.title }}</h6>
+                <a href="{{ project.get_absolute_url }}" class="btn btn-primary" role="button">View</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'update-project' project.id %}" class="btn btn-warning" role="button">Update</a>
+                    <a href="{% url 'delete-project' project.id %}" class="btn btn-danger" role="button">Delete</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>There are no projects registered to this portfolio yet.</p>
+    {% endif %}
+   
+{% endblock %}
